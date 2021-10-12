@@ -1,0 +1,28 @@
+main {
+    padding: 25px 15%;
+}
+
+#profileimg {
+    height: 150px;
+    border-radius: 50%;
+}
+
+hr {
+    width: 110%;
+}
+
+#sidecredentialcontainer > * {
+    margin: 50px 5px;
+}
+
+h6{
+    display: inline;
+}
+
+.edit {
+    position: absolute;
+    right: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 3px 6px;
+    color: gray;
+}
