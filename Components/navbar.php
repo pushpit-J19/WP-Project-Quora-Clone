@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
+<!-- <!DOCTYPE html>
+<html> -->
+<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,6 +11,45 @@
         <title></title>
         <meta name="description" content="">
         <link rel="stylesheet" href="../CSS/navbar.css">
+
+        <link rel="stylesheet" href="../CSS/question.css">
+      <!--   <script src="../JS/postQues.js"></script> -->
+
+        <script>
+            
+            // document.getElementById("addquesbtn").onclick = function () {
+            function showques() {
+                document.getElementById("question-section").style.display = "inline";
+            }
+
+            function hideques() {
+                document.getElementById("question-section").style.display = "none";
+                document.getElementById("quesfield").value = "" ;
+                
+            }
+
+            window.addEventListener('mouseup',function(event){
+                
+                qcard = document.getElementById("qcard");
+                section = document.getElementById("question-section");
+                
+                if(section.style.display == "inline" && event.target != qcard  && event.target.parentNode != qcard && event.target.parentNode.parentNode != qcard
+                && event.target.parentNode.parentNode.parentNode != qcard
+                ){
+                    hideques();
+                }
+            })
+
+            function textAreaAdjust(elem){
+                elem.style.height = (elem.scrollHeight)+"px";
+            }
+
+            function showProfile() {
+                document.getElementById("profiledropdown").classList.toggle("hidden");
+            }
+
+
+        </script>
 
     </head>
     <body>
@@ -45,7 +84,10 @@
             </div>
 
             <div class="navavatar">
-                <img id="avatar" src="../Images/person.jpg">
+                <img id="avatar" src="../Images/person.jpg"  onclick="showProfile()">
+                <div id="profiledropdown" class="hidden">
+                    <!--a=============================-->
+                </div>
             </div>
             <div class="navicon grayicon" title="Language">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
@@ -53,9 +95,60 @@
                 </svg>
             </div>
             <div class="navbutton">
-                <button id="addquesbtn" type="button" class="btn btn-danger">Add question</button>
+                <button id="addquesbtn" type="button" class="btn btn-danger" onclick="showques()">Add question</button>
             </div>
         </div>
+
+        
+        <section id="question-section">
+            <div class="overlay">
+            </div>
+            <div id="question-card-container">
+                <div class="qcardcontainer">
+                    <div class="qcard" id="qcard">
+                            
+                        <div class="qcardheader d-flex">
+                            <div id="closebutton" class="col-md-1" onclick="hideques()">
+                                <button class="close" id="qcardclose">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="col-md-11 d-flex justify-content-center">
+                                <select id="qtype" name="qtype">
+                                    <option>Add Question</option>
+                                    <option>Share link</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="qcardbody">
+                            <div class="qcardinfo d-flex">
+                                <img id="qcardavatar" name="qcardavatar" src="../Images/person.jpg">
+                                <span>Person name</span>
+                                <span>&nbspasked</span>
+                            </div>
+                            <div class="qcardques d-flex">
+                                <textarea placeholder="Start your question with What, Why, How etc." id="quesfield" name="quesfield" onkeyup="textAreaAdjust(this)"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="qcardfooter">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <button id="qcancel" onclick="hideques()">cancel</button>
+                                <button id="submit" name="submit" class="btn btn-primary">Add Question</button>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
 
 
@@ -79,7 +172,7 @@
             }
         </script>
     </body>
-</html>
+<!-- </html> -->
 
 <!--
 #A82400 and #801B00 

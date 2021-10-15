@@ -1,3 +1,13 @@
+<?php
+    /*
+    session_start();
+    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']==false){
+        header('location: login.php');
+    }
+    */
+?>
+
+
 <!DOCTYPE html>
 
 <html>
@@ -9,25 +19,19 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <title></title>
+        <title>Quora</title>
         <meta name="description" content="">
-        <link rel="stylesheet" href="">
-
-        <style>
-            header{
-                position : sticky;
-                top : 0;
-                z-index : 1000;
-            }
-        </style>
+        <link rel="stylesheet" href="../CSS/index.css">
 
     </head>
     <body>
         <header>
-            <?php include_once 'navbar.php' ?>
+            <?php require_once 'navbar.php' ?>
         </header>
-        <main>
 
+        <main>
+            albc
+            <p>asc</p>
 
         </main>
 

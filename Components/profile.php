@@ -24,7 +24,7 @@
     </head>
     <body>
         <header>
-            <?php include_once 'navbar.php' ?>
+            <?php require_once 'navbar.php' ?>
         </header>
         <main >
             <div class="container">
