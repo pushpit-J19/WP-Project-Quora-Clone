@@ -3,3 +3,47 @@ header{
     top : 0;
     z-index : 15;
 }
+
+/* ############################ */
+
+/* left column */
+
+
+.leftcolbtn {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #eee;
+    font-size: small;
+    
+}
+.leftcolbtn:hover, .leftcolbtn:focus {
+    background-color: #ddd;
+    outline: none;
+    border: none;
+}
+
+#quesHeading {
+    font-size: large;
+}
+
+.postimg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.postname{
+    font-size: medium;
+}
+
+.postdate{
+    font-size: small;
+}
+
+.postdesc{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

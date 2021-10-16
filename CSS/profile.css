@@ -1,9 +1,15 @@
+
+header{
+    position : sticky;
+    top : 0;
+    z-index : 1000;
+}
+
 main {
     padding: 25px 15%;
 }
 
 #profileimg {
-    height: 150px;
     border-radius: 50%;
 }
 
@@ -25,4 +31,18 @@ h6{
     border: 1px solid rgba(0,0,0,0.1);
     padding: 3px 6px;
     color: gray;
+}
+
+.categories{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+.single-tab{
+    width: fit-content;
+}
+
+.single-tab:hover {
+    cursor: pointer;
+    background-color: #ededed;
 }
