@@ -1,0 +1,164 @@
+/*body*/
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/*progress bar at top*/
+.sign-progress{
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    border-bottom: 1px solid lightgray;
+    box-shadow: 0px 1px 4px rgba(211, 211, 211, 0.555); /* hor-offset, ver-offset, blurr, spread */
+}
+
+.bar-logo{
+    height: 36px;
+    margin-left: 10%;
+    padding: 10px;
+    
+}
+
+.progress{
+    position: absolute;
+    width: 45%;
+    padding: 0px 100px 0px 100px;
+    height: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#start-text{
+    position: absolute;
+    top: 50%;
+    padding: 20px;
+    transform: translate(5%, -52%);
+    font-weight: 500;
+}
+
+#finish-text{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    padding: 20px;
+    transform: translate(470%, -52%);
+    font-weight: 500;
+}
+
+/*interest selection text One more step*/
+.interests-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 80%;
+    width: 56%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #dee0e1;
+    border-radius: 7px;
+}
+
+.last-step-text-container{
+    display: flex;
+    background-color: #f7f7f8;
+    height: 12%;
+    border-bottom: 1px solid #dee0e1;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.last-step-text{
+    width: 100%;
+    padding: 15px;
+    font-size: large;
+    font-weight: bold;
+}
+
+/*interest selection interest box*/
+.interests-option{
+    height: 73%;
+    border-bottom: 1px solid #dee0e1;
+}
+
+.interests-option ul {
+    list-style-type: none;
+}
+  
+.interests-option li {
+    display: inline-block;
+}
+  
+.interests-option input[type="checkbox"][id^="cb"] {
+    display: none;
+}
+  
+.interests-option label {
+    border: 1px solid #fff;
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+}
+  
+.interests-option label::before {
+    background-color: white;
+    color: white;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid #2e69ff;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+}
+
+.interests-option label img{
+    height: 100px;
+    width: 100px;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+  
+.interests-option :checked + label {
+    border-color: #ddd;
+}
+  
+.interests-option :checked + label::before {
+    content: "✓";
+    background-color: #2e69ff;
+    transform: scale(1);
+}
+
+.interests-option :checked + label img {
+    transform: scale(0.95);
+    border-radius: 5px;
+}
+
+/*interest selection submit button box*/
+.submit-interests{
+    background-color: #f7f7f8;
+    height: 15%;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+#finish{
+    padding: 10px 15px 10px 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #2e69ff;
+    border: none;
+    border-radius: 25px;
+    float: right;
+    margin: 2%;
+}
