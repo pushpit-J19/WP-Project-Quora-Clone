@@ -5,6 +5,11 @@
         header('location: login.php');
     }
     */
+    $dbhost = 'localhost';
+    $dbUsername = 'root';
+    $dbpassword = '';
+    $dbname = "Project_DB";
+    $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
 ?>
 
 
@@ -40,12 +45,34 @@
                         Add question
                     </button>
 
-                    <button class="leftcolbtn my-1 py-2  text-muted rounded">
-                        Category 1
-                    </button>
-                    <button class="leftcolbtn  my-1 py-2 text-muted rounded">
-                        Category 1
-                    </button>
+
+                    <?php 
+
+                        $categoriesQuery = "SELECT * FROM CATEGORIES";
+                        
+                        if($categoriestable = mysqli_query($conn, $categoriesQuery)){
+                            if(mysqli_num_rows($categoriestable) > 0){
+                                //echo "<br>whole table : <br>"; 
+                                while ($row = mysqli_fetch_array($categoriestable)){
+                                    $catName = $row['Cat_name'];
+                                    $catImg = $row['Cat_img'];
+                                    echo 
+                                    "<button class='leftcolbtn my-1 py-2  text-muted rounded'>
+                                        <img src='$catImg' alt='' width='20' height='20'>
+                                        $catName
+                                    </button>";
+                                    
+                                }
+        
+                            }else{
+                                echo "<br> no such row";
+                            }
+                        }
+        
+                        
+
+                    ?>
+
                 </div>
 
 
@@ -114,5 +141,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<?php mysqli_close($conn); ?>
     </body>
 </html>

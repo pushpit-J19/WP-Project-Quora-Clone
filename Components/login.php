@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+
+<?php require_once 'db_prep.php' ?>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">

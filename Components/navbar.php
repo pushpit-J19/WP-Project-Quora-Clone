@@ -15,46 +15,7 @@
         <link rel="stylesheet" href="../CSS/question.css">
       <!--   <script src="../JS/postQues.js"></script> -->
 
-        <script>
-            
-            // document.getElementById("addquesbtn").onclick = function () {
-            function showques() {
-                document.getElementById("question-section").style.display = "inline";
-            }
-
-            function hideques() {
-                document.getElementById("question-section").style.display = "none";
-                document.getElementById("quesfield").value = "" ;
-                
-            }
-
-            window.addEventListener('mouseup',function(event){
-                
-                qcard = document.getElementById("qcard");
-                section = document.getElementById("question-section");
-                
-                if(section.style.display == "inline" && event.target != qcard  && event.target.parentNode != qcard && event.target.parentNode.parentNode != qcard
-                && event.target.parentNode.parentNode.parentNode != qcard
-                ){
-                    hideques();
-                }
-            });
-
-            function textAreaAdjust(elem){
-                elem.style.height = (elem.scrollHeight)+"px";
-            }
-
-            function showProfile() {
-                document.getElementById("profiledropdown").classList.toggle("hidden");
-            }
-
-            function gotoHome() {
-                console.log("Ascas");
-                window.location.href = "index.php";
-            }
-
-
-        </script>
+        
 
     </head>
     <body>
@@ -63,7 +24,7 @@
             <div class="navlogo">
                 <img id="navlogoimg" src="../Images/logo.png" alt="Quora logo" height="30px" class="mr-3">
             </div>
-            <div class="navicon grayicon" title="Home" onclick="gotoHome()" >
+            <div class="navicon grayicon" title="Home" id="home">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                     <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                 </svg>
@@ -89,10 +50,7 @@
             </div>
 
             <div class="navavatar">
-                <img id="avatar" src="../Images/person.jpg"  onclick="showProfile()">
-                <div id="profiledropdown" class="hidden">
-                    <!--a=============================-->
-                </div>
+                <img class="avatar" src="../Images/person.jpg"  onclick="showProfile()">
             </div>
             <div class="navicon grayicon" title="Language">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
@@ -101,6 +59,27 @@
             </div>
             <div class="navbutton">
                 <button id="addquesbtn" type="button" class="btn btn-danger" onclick="showques()">Add question</button>
+            </div>
+        </div>
+
+        <div id="profiledropdown" class="flex-column align-items-center">
+            <div class="arrowup"></div>
+            <div class="d-flex flex-column card p-2">
+                <div class="d-flex pt-2" onclick="window.location.href='profile.php'">
+                    <div class="col-md-4">
+                        <img class="avatar" src="../Images/person.jpg"  onclick="showProfile()">
+                    </div>
+                    <div class="col-md-8">
+                        <span style="font-size: larger; font-weight:bolder; position:relative; top:10%; left: -15%">Name surname</span>
+                    </div>
+                </div> <hr>
+                <div>
+                    <button id="logout" class="text-muted bg-transparent border-0 w-100 text-left">Logout</button>
+                </div><hr>
+                <div>
+                    About Careers.Terms.Privacy.Acceptable.Use Businesses.Press.Your Ad Choices
+                </div>
+
             </div>
         </div>
 
@@ -137,6 +116,75 @@
                             <div class="qcardques d-flex">
                                 <textarea placeholder="Start your question with What, Why, How etc." id="quesfield" name="quesfield" onkeyup="textAreaAdjust(this)"></textarea>
                             </div>
+                            <span id="quesError">Please fill this field first</span>
+
+                        </div>
+
+                        <div class="qcardfooter">
+                            <div class="col-md-12 d-flex justify-content-end">
+                                <button id="qcancel" onclick="hideques()">cancel</button>
+                                <button id="submit" name="submit" class="btn btn-primary" onclick="showCat()">Add Question</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="question-categories">
+            <div id="question-cat-container">
+                <div class="qcardcontainer">
+                    <div class="qcard" id="catcard">
+                            
+                        <div class="qcardheader d-flex">
+                            <div id="qback" class="col-md-1" onclick="document.getElementById('question-categories').style.display = 'none'">
+                                <button class="close" id="qcardback">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                                </svg>
+                                </button>
+                            </div>
+                            <div class="col-md-11 d-flex justify-content-center">
+                                Select categories
+                            </div>
+                        </div>
+
+                        <div class="qcardbody">
+                            <div class="qcardinfo d-flex">
+                                <img id="qcardavatar" name="qcardavatar" src="../Images/person.jpg">
+                                <span>Person name</span>
+                                <span>&nbspasked</span>
+                            </div>
+                            <div class="qcardques d-flex flex-column">
+                                <span class="py-2">Choose the categories of your question for better and quicker answers</span>
+                                
+                                <?php 
+                                    $dbhost = 'localhost';
+                                    $dbUsername = 'root';
+                                    $dbpassword = '';
+                                    $dbname = "Project_DB";
+                                    $conne = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
+                                    
+                                    $categoriesQuery = "SELECT * FROM CATEGORIES";
+                                    if($categoriestable = mysqli_query($conne, $categoriesQuery)){
+                                        if(mysqli_num_rows($categoriestable) > 0){
+                                            while ($row = mysqli_fetch_array($categoriestable)){
+                                                $catName = $row['Cat_name'];
+                                                echo 
+                                                "<div class='form-check form-switch py-1'>
+                                                    <input class='form-check-input' type='checkbox' id='$catName'>
+                                                    <label class='form-check-label' for='$catName'>$catName</label>
+                                                </div>";
+                                                
+                                            }
+                    
+                                        }
+                                    }
+                                    mysqli_close($conne);
+                                    
+                                ?>
+                            </div>
                         </div>
 
                         <div class="qcardfooter">
@@ -146,14 +194,10 @@
                             </div>
                         </div>
 
-
-
-
                     </div>
                 </div>
             </div>
         </section>
-
 
 
 
@@ -175,6 +219,84 @@
                     this.classList.add("activenavicon");
                 }
             }
+        </script>
+
+        <script>
+            
+            // document.getElementById("addquesbtn").onclick = function () {
+            function showques() {
+                document.getElementById("question-section").style.display = "inline";
+                document.getElementById("quesfield").focus();
+            }
+            function showCat() {
+                if (document.getElementById("quesfield").value == ""){
+                    document.getElementById("quesError").style.display = "flex";
+                }else{
+                    document.getElementById('question-categories').style.display ='inline';
+                    document.getElementById("quesError").style.display = "none";
+                }
+            }
+            document.getElementById("quesfield").onkeyup = function (){
+                if (document.getElementById("quesfield").value != "")
+                    document.getElementById("quesError").style.display = "none";
+            }
+
+            function hideques() {
+                document.getElementById("question-section").style.display = "none";
+                document.getElementById("quesfield").value = "" ;
+                document.getElementById("question-categories").style.display = "none";
+                document.getElementById("quesfield").value = "" ;
+                checks = document.getElementsByClassName("form-check-input");
+                for(var i=0; i<checks.length; i++){
+                    checks[i].checked = false;
+                }   
+            }
+
+            window.addEventListener('mouseup',function(event){
+                
+                qcard = document.getElementById("qcard");
+                catcard = document.getElementById("catcard");
+                section = document.getElementById("question-section");
+                catsection = document.getElementById("question-categories");
+                if(section.style.display == "inline"){
+                    if(catsection.style.display == "inline"||catsection.style.display == "block")
+                    {    if( event.target != catcard  && event.target.parentNode != catcard && event.target.parentNode.parentNode != catcard && event.target.parentNode.parentNode.parentNode != catcard && event.target.parentNode.parentNode.parentNode.parentNode != catcard && event.target.parentNode.parentNode.parentNode.parentNode.parentNode != catcard )
+                        {
+                            hideques();
+                            console.log(event.target, "a");
+                        }
+                    }
+                    else if( event.target != qcard  && event.target.parentNode != qcard && event.target.parentNode.parentNode != qcard && event.target.parentNode.parentNode.parentNode != qcard )
+                    {
+                        hideques();
+                        console.log(event.target, "b");
+                    }
+                }
+            });
+
+            function textAreaAdjust(elem){
+                elem.style.height = (elem.scrollHeight)+"px";
+            }
+
+            function showProfile() {
+                document.getElementById("profiledropdown").style.display = "flex";
+            }
+            window.addEventListener('mouseup',function(event){
+                
+                profilecard = document.getElementById("profiledropdown")
+                
+                if(profilecard.style.display == "flex" && event.target != profilecard){
+                    profilecard.style.display = "none";
+                }
+            });
+
+            
+
+            document.getElementById("home").onclick = function() {
+                console.log("Ascas");
+                window.location.href = "index.php";
+            };
+
         </script>
     </body>
 <!-- </html> -->

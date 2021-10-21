@@ -9,8 +9,10 @@ main {
     padding: 25px 15%;
 }
 
-#profileimg {
+#profileimg , #profileoverlay, #profilepicfield{
     border-radius: 50%;
+    width: 200px;
+    height: 200px;
 }
 
 hr {
@@ -45,4 +47,31 @@ h6{
 .single-tab:hover {
     cursor: pointer;
     background-color: #ededed;
+}
+
+
+/*======================================
+
+Profile edit option */
+
+#profileoverlay{
+    display: none;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+}
+#profileimg:hover ~ #profileoverlay, #profileoverlay:hover{
+    display: flex;
+}
+
+#profileedit{
+    position: absolute;
+    color: white;
+    z-index: 11;
+}
+
+#profilepicfield, #changeprofile{
+    position: absolute;
+    visibility: hidden;
 }
