@@ -44,7 +44,7 @@
                             <div class="right">
                                 <p>Login</p>
                                 <hr class="right-divide">
-                                <form class="login-form">
+                                <form action = "validate.php" method = "post" class="login-form">
                                     <label id="email-lab" for="email">Email</label>
                                     
                                     <input type="email" id="email" name="email" required placeholder="Your email">
