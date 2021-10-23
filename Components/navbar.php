@@ -120,10 +120,14 @@
 
                         </div>
 
-                        <div class="qcardfooter">
-                            <div class="col-md-12 d-flex justify-content-end">
+                        <div class="qcardfooter d-flex justify-content-between">
+                            <div> 
+                                <button class="btn bg-light text-muted" id="quesphotobtn">Add photo</button>
+                                <span class="text-muted" id="qname-msg" style="font-size: x-small;"></span>
+                            </div>
+                            <div class="d-flex justify-content-end">
                                 <button id="qcancel" onclick="hideques()">cancel</button>
-                                <button id="submit" name="submit" class="btn btn-primary" onclick="showCat()">Add Question</button>
+                                <button id="qnext" name="qnext" class="btn btn-primary" onclick="showCat()">Add Question</button>
                             </div>
                         </div>
 
@@ -131,6 +135,8 @@
                 </div>
             </div>
         </section>
+
+        <input type="file" name="q_name" id="q_name">
 
         <section id="question-categories">
             <div id="question-cat-container">
@@ -298,8 +304,16 @@
                 window.location.href = "index.php";
             };
             document.getElementById("answer").onclick = function() {
-                window.location.href = "answer.php";
+                window.location.href = "index.php";
             };
+
+
+            document.getElementById("quesphotobtn").onclick = function(){
+                document.getElementById("q_name").click();
+            }
+            document.getElementById("q_name").onchange = function(){
+                document.getElementById("qname-msg").innerText = document.getElementById("q_name").value;
+            }
 
         </script>
     </body>

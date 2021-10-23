@@ -156,7 +156,12 @@
     background-color: #ececec;
 }
 
-#submit {
+#submit, #qnext {
     padding: 7px 25;
     border-radius: 25px;
+}
+
+
+#q_name{
+    display: none;
 }
