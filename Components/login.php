@@ -133,7 +133,7 @@
                         <!--Email error-->
                     </div>
                     <input type="button" value="Next" id="reg-next" name="reg-next">
-                </form>
+                <!-- </form> -->
             </div>
         </div>
 
@@ -141,13 +141,15 @@
             <div class="pass-form-container">
                 <p class="close-p">&times;</p>
                 <p id="reg-p">Sign up</p>
-                <form class="pass">
-                    <label for="new-pass">Password</label>
-                    <input type="password" id="new-pass" name="new-pass" required>
-                    <div class="pass-error">
-                        <!--Password error msg-->
+                <!-- <form class="pass"> -->
+                    <div class="pass">
+                        <label for="new-pass">Password</label>
+                        <input type="password" id="new-pass" name="new-pass" required>
+                        <div class="pass-error">
+                            <!--Password error msg-->
+                        </div>
+                        <input type="button" value="Finish" id="reg-finish" name="reg-finish">
                     </div>
-                    <input type="button" value="Finish" id="reg-finish" name="reg-finish">
                 </form>
             </div>
         </div>
