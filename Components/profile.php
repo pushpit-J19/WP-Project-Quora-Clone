@@ -1,4 +1,71 @@
-<!DOCTYPE html>
+<?php 
+
+    
+    session_start();
+    /*if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']==false){
+        header('location: login.php');
+    }
+    */
+
+    function php_func(){
+        echo "hellooo";
+    }
+
+    function answers(){
+        echo 
+        "<img src='../Images/postbox.png' style='width:15%' class='mt-5'><span id='empty-message' class='text-muted'>You haven't answered any questions yet.</span><button id='activitybtn'class='btn btn-primary mt-5' onclick='gotoHome()' style='border-radius: 20px;'>Answer questions</button>"
+        ;
+    }
+
+    function question() {
+
+        echo 
+        "<img src='../Images/postbox.png' style='width:15%' class='mt-5'><span id='empty-message' class='text-muted'>You haven't asked any questions yet.</span><button id='activitybtn'class='btn btn-primary mt-5' onclick='showques()' style='border-radius: 20px;'>Ask questions</button>"
+        ;
+
+        /*
+        $dbhost = 'localhost';
+        $dbUsername = 'root';
+        $dbpassword = '';
+        $dbname = "Project_DB";
+        $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
+
+         $cid = 1; //  $_SESSION['usernameid'];
+        $quesQuery = "SELECT * FROM QUESTION WHERE Cid = $cid";
+        if($questions = mysqli_query($conn, $questionsQuery)){
+            if(mysqli_num_rows($questions) > 0){
+                while ($row = mysqli_fetch_array($questions)){
+                    $desc = $row['Ques_desc'];
+                    echo
+                        "<div class='card'>
+                            $desc
+                        </div>"
+                    ;
+                }
+            }else{
+                echo 
+                    "<img src='../Images/postbox.png' style='width:15%' class='mt-5'>
+                    <span id='empty-message' class='text-muted'>You haven't asked any questions yet.</span>
+                    <button id='activitybtn'class='btn btn-primary mt-5' onclick='showques()' style='border-radius: 20px;'>Ask questions</button>"
+                ;
+            }
+        } 
+
+        mysqli_close($conn);
+        */
+    }
+
+    $dbhost = 'localhost';
+    $dbUsername = 'root';
+    $dbpassword = '';
+    $dbname = "Project_DB";
+
+    $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
+    $cust =  $_SESSION['cid'];
+    $catQuery = "SELECT * FROM CUSTOMER WHERE Cid = '$cust'";
+
+
+?>
 
 <html>
     <head>
@@ -56,7 +123,6 @@
                         <div class="d-flex justify-content-start w-100">
                             <div style="font-size:small; color: #A82400; font-weight: bold" class="single-tab p-2" onclick="changeTabs(this)">Questions</div> <!-- add class text muted when not in use -->
                             <div style="font-size:small; color: #A82400;" class="single-tab p-2 text-muted"  onclick="changeTabs(this)">Answers</div>
-                            <div style="font-size:small; color: #A82400;" class="single-tab p-2 text-muted"  onclick="changeTabs(this)">Activity</div>
                         </div>
                     </div>
                     
@@ -64,12 +130,13 @@
                         Questions
                     </div>
 
-                    <div class="row  w-100 py-2 d-flex flex-column align-items-center" id="tabtitle">
+                    <div class="row  w-100 py-2 d-flex flex-column align-items-center" id="tabcontent">
                         <!--- if no data in this tab then this-->
 
-                        <img src="../Images/postbox.png" style="width:15%" class="mt-5">
-                        <span id="empty-message" class="text-muted">You haven't asked any questions yet.</span>
-                        <button id="activitybtn"class="btn btn-primary mt-5" onclick="showques()" style="border-radius: 20px;">Ask questions</button>
+                    <img src='../Images/postbox.png' style='width:15%' class='mt-5'>
+                    <span id='empty-message' class='text-muted'>You haven't asked any questions yet.</span>
+                    <button id='activitybtn'class='btn btn-primary mt-5' onclick='showques()' style='border-radius: 20px;'>Ask questions</button>
+                        
 
                         <!-- else -->
                     </div>
@@ -92,12 +159,41 @@
                                 </div>
                             </div>
                             <div class="d-flex row"><hr></div>
+                            <?php
+                                    
+                                    if($categoriestable = mysqli_query($conn, $catQuery)){
+                                        if(mysqli_num_rows($categoriestable) > 0){
+                                            $row = mysqli_fetch_array($categoriestable);
+                                            $categories = $row['Cat_name'];
+                                            $categories = explode(" ",$categories);
+
+                                            foreach($categories as $cat){
+                                                $img = "../Images/".strtolower($cat).".png" ;
+                                                echo 
+                                                "
+                                                <div class='d-flex m-1 p-2 w-100'>
+                                                    <img class='categories my-1' src='$img'>
+                                                    <div class='mx-2 d-flex flex-column'>
+                                                        <span class='font-weight-bold catname h-50 my-0'>$cat</span>  
+                                                    </div>
+                                                </div>
+                                                ";
+                                            }
+                                        }else{
+                                            echo "<br><span class='font-weight-bold catname h-50 my-0'>Data not available</span>";
+                                        }
+    
+                                    }
+                            ?>
                             <div class="d-flex row">
                                 <span style="border-radius:50%; background-color:#eee;" class="px-1 mr-2 my-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
                                 <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" fill="#000"/>
                                 <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z" fill="#000"/>
                                 </svg> </span>
-                                works at <?php echo "Student" ?>
+                                works at 
+                                <?php echo "Student";
+                                    echo "";
+                                ?>  
                             </div>
                             <div class="d-flex row">
                                 <span style="border-radius:50%; background-color:#eee;" class="px-1 mr-2 my-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
@@ -127,10 +223,6 @@
                                 <div>
                                     <h6>Knows about</h6>
                                     <button class="rounded-circle edit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                    </svg>
-                                    </button>
                                 </div>
                             </div>
                             <div class="d-flex row"><hr></div>
@@ -149,6 +241,32 @@
                                         <span class="text-muted catans h-50 my-0">4 answers</span>  
                                     </div>
                                 </div>
+                                <?php
+                                    
+                                    if($categoriestable = mysqli_query($conn, $catQuery)){
+                                        if(mysqli_num_rows($categoriestable) > 0){
+                                            $row = mysqli_fetch_array($categoriestable);
+                                            $categories = $row['Cat_name'];
+                                            $categories = explode(" ",$categories);
+
+                                            foreach($categories as $cat){
+                                                $img = "../Images/".strtolower($cat).".png" ;
+                                                echo 
+                                                "
+                                                <div class='d-flex m-1 p-2 w-100'>
+                                                    <img class='categories my-1' src='$img'>
+                                                    <div class='mx-2 d-flex flex-column'>
+                                                        <span class='font-weight-bold catname h-50 my-0'>$cat</span>  
+                                                    </div>
+                                                </div>
+                                                ";
+                                            }
+                                        }else{
+                                            echo "<br><span class='font-weight-bold catname h-50 my-0'>Data not available</span>";
+                                        }
+    
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -165,9 +283,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<!--         <script src="../JS/profile.js">
+        </script> -->
         <script>
 
             function changeTabs(elem) {
+                
                 var tabs = document.getElementsByClassName("single-tab");
             
                 for(var j=0; j<tabs.length; j++){
@@ -181,31 +302,38 @@
                     document.getElementById("empty-message").innerHTML = "You haven't asked any questions yet.";
                     document.getElementById("activitybtn").onclick = showques;
                     document.getElementById("activitybtn").innerHTML = "Ask questions";
+                    var result ="<?php question(); ?>";
+                    document.getElementById("tabcontent").innerHTML = result;
                 }
                 else if(elem.innerHTML == "Answers"){
                     document.getElementById("empty-message").innerHTML = "You haven't answered any questions yet.";
                     document.getElementById("activitybtn").onclick = gotoHome;
                     document.getElementById("activitybtn").innerHTML = "Answer questions";
+                    var result ="<?php answers(); ?>";
+                    document.getElementById("tabcontent").innerHTML = result;
                 }
-                else if(elem.innerHTML == "Activity"){
-                    document.getElementById("empty-message").innerHTML = "You haven't asked or answered any questions yet.";
-                    document.getElementById("activitybtn").onclick = showques;
-                    document.getElementById("activitybtn").innerHTML = "Ask questions";
-                }
-
+                
             }
-
+            
             function changeavt(){
                 document.getElementById("profilepicfield").click();
             }
+            function gotoHome(){
+                window.location.href = "answer.php";
+            }
+            function gotoAnswers(){
+                window.location.href = "index.php";
+            }
+            
             document.getElementById("profilepicfield").onchange = function() {
                 console.log("h1");
                 document.getElementById("form").submit();
                 console.log("h1");
             };
-            
         </script>
 
 
     </body>
 </html>
+
+mysqli_close($conn);
