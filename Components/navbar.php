@@ -83,14 +83,14 @@
             </div>
         </div>
 
-        
-        <section id="question-section">
+        <form action="insert-question.php" class="submit_question" method="POST">
+            <section id="question-section">
             <div class="overlay">
             </div>
             <div id="question-card-container">
                 <div class="qcardcontainer">
                     <div class="qcard" id="qcard">
-                            
+
                         <div class="qcardheader d-flex">
                             <div id="closebutton" class="col-md-1" onclick="hideques()">
                                 <button class="close" id="qcardclose">
@@ -134,11 +134,15 @@
                     </div>
                 </div>
             </div>
-        </section>
+            </section>
 
+<<<<<<< Updated upstream
         <input type="file" name="q_name" id="q_name">
 
         <section id="question-categories">
+=======
+            <section id="question-categories">
+>>>>>>> Stashed changes
             <div id="question-cat-container">
                 <div class="qcardcontainer">
                     <div class="qcard" id="catcard">
@@ -188,7 +192,6 @@
                                         }
                                     }
                                     mysqli_close($conne);
-                                    
                                 ?>
                             </div>
                         </div>
@@ -203,7 +206,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+            </section>
+        </form>
+        
 
 
 
