@@ -114,7 +114,7 @@
                                 <span>&nbspasked</span>
                             </div>
                             <div class="qcardques d-flex">
-                                <textarea placeholder="Start your question with What, Why, How etc." id="quesfield" name="quesfield" onkeyup="textAreaAdjust(this)"></textarea>
+                                <textarea placeholder="Start your question with What, Why, How etc." id="quesfield" name="quesfield"></textarea>
                             </div>
                             <span id="quesError">Please fill this field first</span>
 
@@ -244,8 +244,8 @@
             function hideques() {
                 document.getElementById("question-section").style.display = "none";
                 document.getElementById("quesfield").value = "" ;
+                document.getElementById("quesfield").style.height = "26px" ;
                 document.getElementById("question-categories").style.display = "none";
-                document.getElementById("quesfield").value = "" ;
                 checks = document.getElementsByClassName("form-check-input");
                 for(var i=0; i<checks.length; i++){
                     checks[i].checked = false;
@@ -263,18 +263,20 @@
                     {    if( event.target != catcard  && event.target.parentNode != catcard && event.target.parentNode.parentNode != catcard && event.target.parentNode.parentNode.parentNode != catcard && event.target.parentNode.parentNode.parentNode.parentNode != catcard && event.target.parentNode.parentNode.parentNode.parentNode.parentNode != catcard )
                         {
                             hideques();
-                            console.log(event.target, "a");
+                            //console.log(event.target, "a");
                         }
                     }
                     else if( event.target != qcard  && event.target.parentNode != qcard && event.target.parentNode.parentNode != qcard && event.target.parentNode.parentNode.parentNode != qcard )
                     {
                         hideques();
-                        console.log(event.target, "b");
+                        //console.log(event.target, "b");
                     }
                 }
             });
 
-            function textAreaAdjust(elem){
+            document.getElementById("quesfield").onkeydown = function(){ //textAreaAdjust
+                console.log("here");
+                elem = document.getElementById("quesfield");
                 elem.style.height = (elem.scrollHeight)+"px";
             }
 

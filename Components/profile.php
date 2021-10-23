@@ -30,7 +30,7 @@
         $dbname = "Project_DB";
         $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
 
-         $cid = 1; //  $_SESSION['usernameid'];
+         $cid = 1; //  $_SESSION['cid'];
         $quesQuery = "SELECT * FROM QUESTION WHERE Cid = $cid";
         if($questions = mysqli_query($conn, $questionsQuery)){
             if(mysqli_num_rows($questions) > 0){
