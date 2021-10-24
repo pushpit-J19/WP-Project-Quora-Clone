@@ -159,8 +159,7 @@
                                 $custName = $cust['C_name'];
                                 $custImg = $cust['DP_name'];
 
-                                if($Q_name == ""){
-                                    echo
+                                echo
                                     "<div class='card mb-2' id='$qid-container'>
                                         <div class='d-flex flex-column'>
                                             <div class='d-flex m-1 p-2 justify-content-between'>
@@ -178,33 +177,10 @@
                                                     $Ques_desc
                                                 </span>
                                             </div>
+                                            <img src='$Q_name' class='w-100'>
                                         </div>
                                     </div>"
                                 ;
-                                }else{
-                                    echo
-                                        "<div class='card mb-2' id='$qid-container'>
-                                            <div class='d-flex flex-column'>
-                                                <div class='d-flex m-1 p-2 justify-content-between'>
-                                                    <div class='d-flex'>
-                                                        <img id='$qid-Avatar' name='$qid-Avatar' class='postimg' src='$custImg'>
-                                                        <div class='mx-2 d-flex flex-column'>
-                                                            <span class='font-weight-bold postname h-50'>$custName</span>  
-                                                            <span class='text-muted postdate  h-50'>posted-on $Asked_date</span>  
-                                                        </div>
-                                                    </div>
-                                                    <form method='post' action='question.php?id=$qid'> <button id='$qid' class='answerbtn p-2 px-4 rounded btn btn-primary'>Answer</button> </form>
-                                                </div>
-                                                <div class='px-2 pb-2'>
-                                                    <span class='postdesc'>
-                                                        $Ques_desc
-                                                    </span>
-                                                </div>
-                                                <img src='$Q_name' class='w-100'>
-                                            </div>
-                                        </div>"
-                                    ;
-                                }
 
                             }
 
