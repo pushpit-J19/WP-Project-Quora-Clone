@@ -88,7 +88,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="send.php">
+                            <a href="https://help.quora.com/hc/en-us/requests/new">
                                 Contact
                         
                             </a>
