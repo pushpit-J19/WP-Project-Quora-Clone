@@ -52,6 +52,7 @@ $sql = "CREATE TABLE if not exists QUESTION(
     Ques_desc TEXT,
     Asked_date DATE,
     Q_name VARCHAR(255) NOT NULL,
+    Q_cat VARCHAR(255) NOT NULL,
     FOREIGN KEY (Cid) REFERENCES CUSTOMER(Cid)
 )";
 
