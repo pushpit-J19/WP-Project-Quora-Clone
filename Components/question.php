@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     $url = $_SERVER['REQUEST_URI'];
     $url_components = parse_url($url);
     parse_str($url_components['query'], $params); 
@@ -22,22 +22,6 @@
 
     $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
     
-    // Question table data
-    $quesQuery = "SELECT * FROM QUESTION WHERE Qid= '$qid'";
-    $quesTable = mysqli_query($conn, $quesQuery);
-    $question = mysqli_fetch_array($quesTable);
-
-    // Customer table data
-    $qcid = $question['Cid'];
-    $qcustquery =   "SELECT * FROM CUSTOMER WHERE Cid= '$qcid'";
-    $asker = mysqli_query($conn, $qcustquery);
-    $asker = mysqli_fetch_array($asker);
-
-    // Answer table data
-    
-    $ansQuery = "SELECT * FROM ANSWER WHERE Qid = '$qid'";
-    $answers = mysqli_query($conn, $ansQuery);
-
 
 ?>
 
@@ -55,84 +39,19 @@
 
         <title>Quora</title>
         <meta name="description" content="">
-        <link rel="stylesheet" href="../CSS/questionPage.css">
+        <link rel="stylesheet" href="../CSS/index.css">
     </head>
     <body>
         <header>
             <?php require_once 'navbar.php' ?>
         </header>
 
-        <main class="container d-flex p-4">
+        <main>
            
-            <div class="d-flex flex-column w-100" >
-                
-                <div class="jumbotron w-100">
-                    <h1 class="display-4">Question</h1>
-                    <p class="lead"><?php echo $asker['C_name']; ?></p>
-                    <hr class="my-4">
-                    <p style="font-size: larger;"><?php echo $question['Ques_desc']; ?>?</p>
-                    <small class="text-muted">posted on <?php echo $question['Asked_date']; ?></small><br>
-                    <small class="text-muted">Tags: <?php echo $question['Q_cat']; ?></small>
-                </div>
-                
-                <div class="card p-3">
-                    <span>Post your answer here</span>
-                    <form method="post" action="submitAnswer.php">
-                        <textarea name="answerfield" id="answerfield" rows="5" class="w-100 my-2 p-2" placeholder="Please explain your answer in detail..."></textarea>
-                        <?php echo "<input name='qid' type='text' value='$qid' style='display:none;'>"; ?>
-                        <div class="d-flex justify-content-end">
-                            <input type="submit" id="anssubmit" name="anssubmit" class="btn btn-primary" value="answer">
-                        </div>
-                    <form>
-                </div>
+            <div class="container d-flex p-4">
                 
 
-             
-
-
-
-                <?php
-                if(mysqli_num_rows($answers) > 0){
-                    while($ans = mysqli_fetch_array($answers)){ 
-
-                        $a_cid = $ans['Cid'];
-                        $ans_body = $ans['ans_body'];
-                        $ans_date = $ans['Answered_date'];
-
-                        $ansCustQuery = "SELECT * FROM CUSTOMER WHERE Cid = '$a_cid'";
-                        $ansCust = mysqli_query($conn, $ansCustQuery);
-                        $ansCust = mysqli_fetch_array($ansCust);
-
-                        $acustname = $ansCust['C_name'];
-                        $acustdp = $ansCust['DP_name']; 
-                        
-                        echo "<div class='card my-1 p-3'>
-                        <div class= 'd-flex flex-column'>
-                            <div class='d-flex'>
-                                <img src='$acustdp' width='36' height='36' class='rounded-circle m-1'>
-                                <div class='d-flex flex-column mx-2'>
-                                    <span class='text-muted'>$acustname</span>
-                                    <small class='text-muted'>$ans_date</small>
-                                </div>
-                            </div>
-                            <span class='my-2 mx-1'>
-                                $ans_body
-                            </span>
-                        </div>
-                    </div>";
-
-                    }
-                }else{
-                    echo 
-                    "
-                    <div class='d-flex flex-column align-items-center w-100'>
-                        <img src='../Images/postbox.png' style='width:15%' class='mt-5'>
-                        <span id='empty-message' class='text-muted'>There are no answers yet for this question.<br> Be the first to answer!</span>
-                    </div>"
-                    ;
-                }
                 
-                ?>
 
             </div>
 
