@@ -121,7 +121,7 @@
             <div class="register-form-container">
                 <p class="close">&times;</p>
                 <p id="reg-p">Sign up</p>
-                <form class="register">
+                <form action= "register_validate.php" method ="post" class="register">
                     <label for="new-name">Name</label>
                     <input type="text" id="new-name" name="new-name" placeholder="What would you like to be called?" required>
                     <div class="name-error">
@@ -148,7 +148,7 @@
                         <div class="pass-error">
                             <!--Password error msg-->
                         </div>
-                        <input type="button" value="Finish" id="reg-finish" name="reg-finish">
+                        <input type="submit" value="Finish" id="reg-finish" name="reg-finish">
                     </div>
                 </form>
             </div>
