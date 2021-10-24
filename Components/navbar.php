@@ -136,13 +136,10 @@
             </div>
             </section>
 
-<<<<<<< Updated upstream
         <input type="file" name="q_name" id="q_name">
 
         <section id="question-categories">
-=======
             <section id="question-categories">
->>>>>>> Stashed changes
             <div id="question-cat-container">
                 <div class="qcardcontainer">
                     <div class="qcard" id="catcard">

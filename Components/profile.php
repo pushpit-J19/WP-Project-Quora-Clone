@@ -102,9 +102,9 @@
                                     </svg>
                                 </div>
                             </div>
-                            <form action="" id="form">
-                                <input type="file" name="profilepic" id="profilepicfield" >
-                                <input type="submit" id="changeprofile">
+                            <form action="changeDp.php" method="post" id="form" enctype="multipart/form-data">
+                                <input type="file" name="profilepicfield" id="profilepicfield" >
+                                <input type="submit" name="submit" id="changeprofile">
                             </form>
 
                         </div>
@@ -327,7 +327,7 @@
             
             document.getElementById("profilepicfield").onchange = function() {
                 console.log("h1");
-                document.getElementById("form").submit();
+                document.getElementById("changeprofile").click();
                 console.log("h1");
             };
         </script>
@@ -336,4 +336,4 @@
     </body>
 </html>
 
-mysqli_close($conn);
+<?php mysqli_close($conn); ?>
