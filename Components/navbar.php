@@ -83,7 +83,7 @@
             </div>
         </div>
 
-        <form action="insert-question.php" class="submit_question" method="POST">
+        <form action="insert-question.php" class="submit_question" method="POST" enctype="multipart/form-data">
             <section id="question-section">
             <div class="overlay">
             </div>
@@ -122,12 +122,12 @@
 
                         <div class="qcardfooter d-flex justify-content-between">
                             <div> 
-                                <button class="btn bg-light text-muted" id="quesphotobtn">Add photo</button>
+                                <button type="button" class="btn bg-light text-muted" id="quesphotobtn">Add photo</button>
                                 <span class="text-muted" id="qname-msg" style="font-size: x-small;"></span>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button id="qcancel" onclick="hideques()">cancel</button>
-                                <button id="qnext" name="qnext" class="btn btn-primary" onclick="showCat()">Add Question</button>
+                                <button type="button" id="qnext" name="qnext" class="btn btn-primary" onclick="showCat()">Add Question</button>
                             </div>
                         </div>
 
@@ -136,13 +136,8 @@
             </div>
             </section>
 
-<<<<<<< Updated upstream
         <input type="file" name="q_name" id="q_name">
-
         <section id="question-categories">
-=======
-            <section id="question-categories">
->>>>>>> Stashed changes
             <div id="question-cat-container">
                 <div class="qcardcontainer">
                     <div class="qcard" id="catcard">
@@ -183,7 +178,7 @@
                                                 $catName = $row['Cat_name'];
                                                 echo 
                                                 "<div class='form-check form-switch py-1'>
-                                                    <input class='form-check-input' type='checkbox' id='$catName'>
+                                                    <input class='form-check-input' type='checkbox' id='$catName' name='cat_check[]' value='$catName'>
                                                     <label class='form-check-label' for='$catName'>$catName</label>
                                                 </div>";
                                                 
