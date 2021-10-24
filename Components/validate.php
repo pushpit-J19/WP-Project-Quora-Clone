@@ -17,20 +17,34 @@ if(isset($_POST["log-submit"]))
         die('Connection Failed: '.mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM CUSTOMER WHERE Email = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql))
+    $sql = "SELECT * FROM CUSTOMER WHERE Email = '$useremail';";
+    if($result = mysqli_query($conn, $sql))
     {
-        header("location:../login.php?error=stmtfailed");
-        exit();
+        if(mysqli_num_rows($result) == 0)
+        {
+            header("location:../login.php?error=UidDoesn'tExist");
+            echo "Nahi Hogaya Bhai";
+        }
+        else{
+            $row = mysqli_fetch_array($result);
+            $pwdhashed = $row["Pass"];
+            $checkpass = password_verify($pwd, $pwdhashed);
+            if($checkpass == false)
+            {
+                header("location:login.php?error=WrongLogin");
+                echo "Bilkul Nahi Hogaya Bhai";
+            }
+            else if($checkpass === true)
+            {
+                session_start();
+                $_SESSION["cid"] = $row["Cid"];
+                header("location:index.php");
+                echo "Hogaya Bhai";
+            }
+        }
     }
 
-    mysqli_stmt_bind_param($stmt, "s", $useremail);
-    mysqli_stmt_execute($stmt);   
-
-    $resultdata = mysqli_stmt_get_results($stmt);
-
-    if($row = mysqli_fetch_assoc($resultdata))
+/*   if($row = mysqli_fetch_assoc($resultdata))
     {
         $pwdhashed = $row["Pass"];
         $checkpass = password($pwd, $pwdhashed);
@@ -52,6 +66,6 @@ if(isset($_POST["log-submit"]))
         header("location:../login.php?error=WrongLogin");
         exit();
     }
+}*/
 }
-
 ?>
