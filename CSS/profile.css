@@ -75,3 +75,18 @@ Profile edit option */
     position: absolute;
     visibility: hidden;
 }
+
+.qcardcontainer {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+
+}
+
+#cred-update{
+    background-color: white;
+}
