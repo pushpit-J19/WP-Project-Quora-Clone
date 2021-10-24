@@ -69,8 +69,6 @@
                                 echo "<br> no such row";
                             }
                         }
-        
-                        
 
                     ?>
 

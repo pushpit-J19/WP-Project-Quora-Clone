@@ -19,9 +19,6 @@ if(isset($_POST["submit"])) {
   }
 }
 
-
-
-
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
   echo "Sorry, your file was not uploaded.";
@@ -36,7 +33,6 @@ if ($uploadOk == 0) {
   }
 }
 
-
 $dbhost = 'localhost';
 $dbUsername = 'root';
 $dbpassword = '';
@@ -47,13 +43,10 @@ $updateQuery = "UPDATE CUSTOMER SET DP_name = '$localfilename' WHERE Cid= '$cid'
 
 if(mysqli_query($conn, $updateQuery)){ 
     echo "<br>Records were updated successfully."; 
-    show_entries($conn);
 } 
 else { 
     echo "<br>ERROR: Could not able to execute $updateQuery. " . mysqli_error($conn); 
 } 
 
 mysqli_close($conn);
-
-
 ?>

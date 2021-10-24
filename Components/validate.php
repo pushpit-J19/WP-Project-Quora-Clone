@@ -33,7 +33,7 @@ if(isset($_POST["log-submit"]))
     if($row = mysqli_fetch_assoc($resultdata))
     {
         $pwdhashed = $row["Pass"];
-        $checkpass = password($pwd, $pwdhashed)
+        $checkpass = password($pwd, $pwdhashed);
         if($checkpass === false)
         {
             header("location:../login.php?error=WrongLogin");
@@ -42,7 +42,7 @@ if(isset($_POST["log-submit"]))
         else if($checkpass === true)
         {
             session_start();
-            $_SESSION["Userid"] = $row["Cid"];
+            $_SESSION["cid"] = $row["Cid"];
             header("location:../index.php");
             exit();
         }

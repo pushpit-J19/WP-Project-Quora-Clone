@@ -2,7 +2,7 @@
 
 if(isset($_POST["reg-finish"]))
 {
-    $uname = $_POST["new-name"]
+    $uname = $_POST["new-name"];
     $newemail = $_POST["new-email"];
     $pwd = $_POST["new-pass"];
 
@@ -18,7 +18,19 @@ if(isset($_POST["reg-finish"]))
         die('Connection Failed: '.mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM CUSTOMER WHERE Email = ?;";
+    $sql = "SELECT * FROM CUSTOMER WHERE Email = '$newemail'";
+    if($result = mysqli_query($conn, $sql))
+    { 
+        if(mysqli_num_rows($result) == 0)
+        { 
+            $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+            $sql = 'INSERT INTO CUSTOMER (C_name, Email, Pass, Joined) VALUES("'.$uname.'","'.$newemail.'","'.$hashedpwd.'","'.date("Y-m-d").'")';
+            mysqli_query($conn, $sql);
+            header("location:login.php");
+        }
+    }
+
+    /*
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql))
     {
@@ -26,6 +38,7 @@ if(isset($_POST["reg-finish"]))
         exit();
     }
 
+    
     mysqli_stmt_bind_param($stmt, "s", $newemail);
     mysqli_stmt_execute($stmt);
 
@@ -54,3 +67,5 @@ if(isset($_POST["reg-finish"]))
         header("location:../login.php?error=none");
         exit();
     }
+    */
+}
