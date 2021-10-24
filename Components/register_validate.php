@@ -24,7 +24,7 @@ if(isset($_POST["reg-finish"]))
         if(mysqli_num_rows($result) == 0)
         { 
             $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
-            $sql = 'INSERT INTO CUSTOMER (C_name, Email, Pass, Joined) VALUES("'.$uname.'","'.$newemail.'","'.$hashedpwd.'","'.date("Y-m-d").'")';
+            $sql = 'INSERT INTO CUSTOMER (C_name, Email, Pass, Joined, DP_name) VALUES("'.$uname.'","'.$newemail.'","'.$hashedpwd.'","'.date("Y-m-d").'","../Images/userdefault.png")';     
             mysqli_query($conn, $sql);
             header("location:login.php");
         }

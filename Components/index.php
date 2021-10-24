@@ -5,11 +5,24 @@
         header('location: login.php');
     }
     */
+    
     $dbhost = 'localhost';
     $dbUsername = 'root';
     $dbpassword = '';
     $dbname = "Project_DB";
+
     $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
+    $cid = 1; //$_SESSION['cid'];
+    $custQuery = "SELECT * FROM CUSTOMER WHERE Cid = '$cid'";
+
+                                    
+    $custTable = mysqli_query($conn, $custQuery);
+    $row = mysqli_fetch_array($custTable);
+    $cname = $row['C_name'];
+    $joined = $row['Joined'];
+    $DP_name = $row['DP_name'];
+
+
 ?>
 
 
@@ -79,8 +92,8 @@
                     <div class="card p-2 mb-2" onclick="showques()">
                         <div class="d-flex flex-column">
                             <div class="m-1">
-                                <img id="qcardavatar" name="qcardavatar" src="../Images/person.jpg">
-                                <span class="text-muted">Person name</span>
+                                <?php echo "<img id='qcardavatar' name='qcardavatar' src='$DP_name'>" ?>
+                                <span class="text-muted"><?php echo $cname; ?></span>
                             </div>
                             <span class="d-block font-weight-bold m-1 text-muted" id="quesHeading">What is your question ?</span>
                         </div>
@@ -107,12 +120,15 @@
                     
                     <div class="card mb-2" id="qid">
                         <div class="d-flex flex-column">
-                            <div class="d-flex m-1 p-2">
-                                <img id="qidAvatar" name="qidAvatar" class="postimg" src="../Images/userdefault.png">
-                                <div class="mx-2 d-flex flex-column">
-                                    <span class="font-weight-bold postname h-50">Person name</span>  
-                                    <span class="text-muted postdate  h-50">posted-on date so</span>  
+                            <div class="d-flex m-1 p-2 justify-content-between">
+                                <div class="d-flex">
+                                    <img id="qidAvatar" name="qidAvatar" class="postimg" src="../Images/userdefault.png">
+                                    <div class="mx-2 d-flex flex-column">
+                                        <span class="font-weight-bold postname h-50">Person name</span>  
+                                        <span class="text-muted postdate  h-50">posted-on date so</span>  
+                                    </div>
                                 </div>
+                                <form method="post" action="question.php"> <button id="qid" class="answerbtn">answer</button> </form>
                             </div>
                             <div class="px-2 pb-2">
                                 <span class="postdesc">
@@ -122,6 +138,58 @@
                             <img src="../Images/sachinpost.png" class="w-100">
                         </div>
                     </div>
+
+
+                    <?php
+                        $quesQuery = "SELECT * FROM QUESTION";
+                        $quesTable = mysqli_query($conn, $quesQuery);
+                        
+                        if(mysqli_num_rows($quesTable) > 0){
+                            while ($row = mysqli_fetch_array($quesTable)){
+                                
+                                $qid = $row['Qid'];
+                                $qcid = $row['Cid'];
+                                $Ques_desc = $row['Ques_desc'];
+                                $Asked_date = $row['Asked_date'];
+                                $Q_name = $row['Q_name'];
+                                $Q_cat = $row['Q_cat'];
+
+                                $cust = mysqli_query($conn, "SELECT * FROM CUSTOMER WHERE Cid = '$qcid'");
+                                $cust = mysqli_fetch_array($cust);
+                                $custName = $cust['C_name'];
+                                $custImg = $cust['DP_name'];
+
+                                echo
+                                    "<div class='card mb-2' id='$qid-container'>
+                                        <div class='d-flex flex-column'>
+                                            <div class='d-flex m-1 p-2 justify-content-between'>
+                                                <div class='d-flex'>
+                                                    <img id='$qid-Avatar' name='$qid-Avatar' class='postimg' src='$custImg'>
+                                                    <div class='mx-2 d-flex flex-column'>
+                                                        <span class='font-weight-bold postname h-50'>$custName</span>  
+                                                        <span class='text-muted postdate  h-50'>posted-on $Asked_date</span>  
+                                                    </div>
+                                                </div>
+                                                <form method='post' action='question.php?id=$qid'> <button id='$qid' class='answerbtn p-2 px-4 rounded btn btn-primary'>Answer</button> </form>
+                                            </div>
+                                            <div class='px-2 pb-2'>
+                                                <span class='postdesc'>
+                                                    $Ques_desc
+                                                </span>
+                                            </div>
+                                            <img src='$Q_name' class='w-100'>
+                                        </div>
+                                    </div>"
+                                ;
+
+                            }
+
+                        }else{
+                            echo "<br> no such row";
+                        }
+                    
+                    
+                    ?>
                     
 
                 </div>

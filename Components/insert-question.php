@@ -15,10 +15,15 @@
     $dst = "";
     $new_img_name = "";
 
+
+    if (isset($_POST['q_name'])){
     $target_dir = "../Images/userdata/";
-    $target_file = $target_dir. basename($_FILES["profilepicfield"]["name"]);
+    $target_file = $target_dir. basename($_FILES["q_name"]["name"]);
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo(basename( $target_file, PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo(basename($target_file), PATHINFO_EXTENSION));
+    }else{
+        $target_file = "";
+    }
 
     if (!$conn){
         die('Connection Failed: '.mysqli_connect_error());
@@ -58,11 +63,12 @@
           $image_cid = mysqli_query($conn, $sql2);
           $row = mysqli_fetch_array($image_cid);
           $new_img_name = $row['Qid'];
+          echo "neww" .$new_img_name;
         }         
 
 
-
-        $target_file = $target_file.$new_img_name.".".$imageFileType;
+        if (isset($_POST['q_name'])){
+        $target_file = $target_dir.$new_img_name.".".$imageFileType;
         // for images
         if (isset($_POST['q_name'])) {
           $check = getimagesize($_FILES["q_name"]["tmp_name"]);
@@ -84,18 +90,20 @@
             echo "Sorry, there was an error uploading your file.";
           }
         }
-
-
-        
+      
         $updateQuery = "UPDATE QUESTION SET Q_name = '$target_file' WHERE Qid= '$new_img_name' ;";   
 
         if(mysqli_query($conn, $updateQuery)){ 
             echo "<br>Records were updated successfully."; 
-            show_entries($conn);
+            header("location:index.php");
         } 
         else { 
             echo "<br>ERROR: Could not able to execute $updateQuery. " . mysqli_error($conn); 
+            header("location:index.php");
         } 
+
+
+      }
 
         mysqli_close($conn);
 
@@ -103,5 +111,6 @@
 
 
     }
+    header("location:index.php");
 ?>
 

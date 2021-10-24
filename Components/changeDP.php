@@ -48,5 +48,7 @@ else {
     echo "<br>ERROR: Could not able to execute $updateQuery. " . mysqli_error($conn); 
 } 
 
+header("location:profile.php");
+
 mysqli_close($conn);
 ?>

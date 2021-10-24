@@ -48,3 +48,11 @@ header{
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.answerbtn, .answerbtn:hover, .answerbtn.focus, .answerbtn.active{
+    outline: none;
+    border: none;
+}
+.answerbtn:hover {
+    cursor: pointer;
+}

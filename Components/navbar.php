@@ -1,5 +1,32 @@
-<!-- <!DOCTYPE html>
-<html> -->
+
+<?php 
+
+
+$dbhost = 'localhost';
+$dbUsername = 'root';
+$dbpassword = '';
+$dbname = "Project_DB";
+
+$conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
+$cid = 1; //$_SESSION['cid'];
+$custQuery = "SELECT * FROM CUSTOMER WHERE Cid = '$cid'";
+
+                                
+$categoriestable = mysqli_query($conn, $custQuery);
+$row = mysqli_fetch_array($categoriestable);
+$cname = $row['C_name'];
+$works = $row['works'] != "" ? $row['works'] : "NA" ;
+$study = $row['study'] != "" ? $row['study'] : "NA" ;
+$lives = $row['lives'] != "" ? $row['lives'] : "NA" ;
+$joined = $row['Joined'];
+$DP_name = $row['DP_name'];
+$categories = $row['Fav_cats'];
+
+
+?>
+
+
+
 <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +77,7 @@
             </div>
 
             <div class="navavatar">
-                <img class="avatar" src="../Images/person.jpg"  onclick="showProfile()">
+               <?php echo "<img class='avatar' src='$DP_name'  onclick='showProfile()'>"; ?> 
             </div>
             <div class="navicon grayicon" title="Language">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
@@ -65,15 +92,15 @@
         <div id="profiledropdown" class="flex-column align-items-center">
             <div class="arrowup"></div>
             <div class="d-flex flex-column card p-2">
-                <div class="d-flex pt-2" onclick="window.location.href='profile.php'">
+                <div class="pointer d-flex pt-2 bg-white" onclick="window.location.href='profile.php'">
                     <div class="col-md-4">
-                        <img class="avatar" src="../Images/person.jpg"  onclick="showProfile()">
+                        <?php echo "<img class='avatar' src='$DP_name'  onclick='showProfile()'>"; ?>
                     </div>
                     <div class="col-md-8">
-                        <span style="font-size: larger; font-weight:bolder; position:relative; top:10%; left: -15%">Name surname</span>
+                        <span style="font-size: larger; font-weight:bolder; position:relative; top:10%; left: -15%"><?php echo $cname; ?></span>
                     </div>
                 </div> <hr>
-                <div>
+                <div class="pointer">
                     <button id="logout" class="text-muted bg-transparent border-0 w-100 text-left">Logout</button>
                 </div><hr>
                 <div>
@@ -109,8 +136,8 @@
 
                         <div class="qcardbody">
                             <div class="qcardinfo d-flex">
-                                <img id="qcardavatar" name="qcardavatar" src="../Images/person.jpg">
-                                <span>Person name</span>
+                            <?php echo "<img src='$DP_name' id='qcardavatar' name='qcardavatar' onclick='showProfile()'>"; ?> 
+                                <span><?php echo $cname; ?></span>
                                 <span>&nbspasked</span>
                             </div>
                             <div class="qcardques d-flex">
