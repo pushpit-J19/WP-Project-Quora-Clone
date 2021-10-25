@@ -1,11 +1,11 @@
 <?php
 
     session_start();
-    /*
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']==false){
+    
+    if(!isset($_SESSION['Cid']) || $_SESSION['Cid']==false){
         header('location: login.php');
     }
-    */
+    
     
     $dbhost = 'localhost';
     $dbUsername = 'root';
@@ -100,45 +100,6 @@
                         </div>
                     </div>
                     <!-- QUESTIONS -->
-                    <div class="card mb-2" id="qid">
-                        <div class="d-flex flex-column">
-                            <div class="d-flex m-1 p-2">
-                                <img id="qidAvatar" name="qidAvatar" class="postimg" src="../Images/userdefault.png">
-                                <div class="mx-2 d-flex flex-column">
-                                    <span class="font-weight-bold postname h-50">Person name</span>  
-                                    <span class="text-muted postdate  h-50">posted-on date so</span>  
-                                </div>
-                            </div>
-                            <div class="px-2 pb-2">
-                                <span class="postdesc">
-                                Above are the Italian clowns and below is the king of them all. Silvio Berlusconi. Justin, got the gwap and swag(pun intended) Erdogan put an artist in jail for sharing this meme, so he has to be on this list. Someone who rubs puls
-                                Above are the Italian clowns and below is the king of them all. Silvio Berlusconi. Justin, got the gwap and swag(pun intended) Erdogan put an artist in jail for sharing this meme, so he has to be on this list. Someone who rubs puls
-                                </span>
-                            </div>
-                            <img src="../Images/sachinpost.png" class="w-100">
-                        </div>
-                    </div>
-                    
-                    <div class="card mb-2" id="qid">
-                        <div class="d-flex flex-column">
-                            <div class="d-flex m-1 p-2 justify-content-between">
-                                <div class="d-flex">
-                                    <img id="qidAvatar" name="qidAvatar" class="postimg" src="../Images/userdefault.png">
-                                    <div class="mx-2 d-flex flex-column">
-                                        <span class="font-weight-bold postname h-50">Person name</span>  
-                                        <span class="text-muted postdate  h-50">posted-on date so</span>  
-                                    </div>
-                                </div>
-                                <form method="post" action="question.php"> <button id="qid" class="answerbtn">answer</button> </form>
-                            </div>
-                            <div class="px-2 pb-2">
-                                <span class="postdesc">
-                                Above are the Italian clowns and below is the king of them all. Silvio Berlusconi. Justin, got the gwap and swag(pun intended) Erdogan put an artist in jail for sharing this meme, so he has to be on this list. Someone who rubs puls
-                                </span>
-                            </div>
-                            <img src="../Images/sachinpost.png" class="w-100">
-                        </div>
-                    </div>
 
 
                     <?php
@@ -210,7 +171,7 @@
                             }
 
                         }else{
-                            echo "<br> no such row";
+                            echo "<br> There are no questions for you! Post now.";
                         }
                     
                     

@@ -89,26 +89,27 @@ $categories = $row['Fav_cats'];
             </div>
         </div>
 
-        <div id="profiledropdown" class="flex-column align-items-center">
-            <div class="arrowup"></div>
-            <div class="d-flex flex-column card p-2">
-                <div class="pointer d-flex pt-2 bg-white" onclick="window.location.href='profile.php'">
-                    <div class="col-md-4">
-                        <?php echo "<img class='avatar' src='$DP_name'  onclick='showProfile()'>"; ?>
+        <form action="logout.php" class="logout-btn" method="POST">
+            <div id="profiledropdown" class="flex-column align-items-center">
+                <div class="arrowup"></div>
+                <div class="d-flex flex-column card p-2">
+                    <div class="pointer d-flex pt-2 bg-white" onclick="window.location.href='profile.php'">
+                        <div class="col-md-4">
+                            <?php echo "<img class='avatar' src='$DP_name'  onclick='showProfile()'>"; ?>
+                        </div>
+                        <div class="col-md-8">
+                            <span style="font-size: larger; font-weight:bolder; position:relative; top:10%; left: -15%"><?php echo $cname; ?></span>
+                        </div>
+                    </div> <hr>
+                    <div class="pointer">
+                        <button id="logout" class="text-muted bg-transparent border-0 w-100 text-left">Logout</button>
+                    </div><hr>
+                    <div>
+                        About Careers.Terms.Privacy.Acceptable.Use Businesses.Press.Your Ad Choices
                     </div>
-                    <div class="col-md-8">
-                        <span style="font-size: larger; font-weight:bolder; position:relative; top:10%; left: -15%"><?php echo $cname; ?></span>
-                    </div>
-                </div> <hr>
-                <div class="pointer">
-                    <button id="logout" class="text-muted bg-transparent border-0 w-100 text-left">Logout</button>
-                </div><hr>
-                <div>
-                    About Careers.Terms.Privacy.Acceptable.Use Businesses.Press.Your Ad Choices
                 </div>
-
             </div>
-        </div>
+        </form>
 
         <form action="insert-question.php" class="submit_question" method="POST" enctype="multipart/form-data">
             <section id="question-section">
@@ -184,8 +185,9 @@ $categories = $row['Fav_cats'];
 
                         <div class="qcardbody">
                             <div class="qcardinfo d-flex">
-                                <img id="qcardavatar" name="qcardavatar" src="../Images/person.jpg">
-                                <span>Person name</span>
+                            <?php echo "<img src='$DP_name' id='qcardavatar' name='qcardavatar' onclick='showProfile()'>"; ?> 
+                            
+                                <span><?php echo $cname?></span>
                                 <span>&nbspasked</span>
                             </div>
                             <div class="qcardques d-flex flex-column">

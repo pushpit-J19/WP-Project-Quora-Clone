@@ -39,7 +39,6 @@ if(isset($_POST["log-submit"]))
                 session_start();
                 $_SESSION["Cid"] = $row["Cid"];
                 header("location:index.php");
-                echo "Hogaya Bhai";
             }
         }
     }
@@ -67,5 +66,6 @@ if(isset($_POST["log-submit"]))
         exit();
     }
 }*/
+
 }
 ?>

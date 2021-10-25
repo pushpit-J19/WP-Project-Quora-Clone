@@ -70,7 +70,7 @@ mysqli_query($conn, $sql);
 
 //Answer table confirm Description
 $sql = "CREATE TABLE if not exists ANSWER(
-    Aid INT(6) UNSIGNED PRIMARY KEY,
+    Aid INT(6) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     Qid INT(6) UNSIGNED,
     Cid INT(6) UNSIGNED,
     FOREIGN KEY (Cid) REFERENCES CUSTOMER(Cid),

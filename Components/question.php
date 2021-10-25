@@ -4,15 +4,15 @@
     $url_components = parse_url($url);
     parse_str($url_components['query'], $params); 
     $qid =$params['id'];
-
+    if(!isset($_SESSION['Cid']) || $_SESSION['Cid']==false){
+        header('location: login.php');
+    }
+    
 ?>
 
 <?php
     /*
     session_start();
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']==false){
-        header('location: login.php');
-    }
     */
     
     $dbhost = 'localhost';
@@ -83,7 +83,7 @@
                         <div class="d-flex justify-content-end">
                             <input type="submit" id="anssubmit" name="anssubmit" class="btn btn-primary" value="answer">
                         </div>
-                    <form>
+                    </form>
                 </div>
                 
 

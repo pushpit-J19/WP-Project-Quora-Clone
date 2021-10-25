@@ -1,10 +1,9 @@
 <?php
-    /*
     session_start();
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']==false){
+    if(!isset($_SESSION['Cid']) || $_SESSION['Cid']==false){
         header('location: login.php');
     }
-    */
+
     $dbhost = 'localhost';
     $dbUsername = 'root';
     $dbpassword = '';

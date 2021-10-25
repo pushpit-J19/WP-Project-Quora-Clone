@@ -1,11 +1,9 @@
 <?php 
 
-    
     session_start();
-    /*if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']==false){
+    if(!isset($_SESSION['Cid']) || $_SESSION['Cid']==false){
         header('location: login.php');
     }
-    */
 
     $dbhost = 'localhost';
     $dbUsername = 'root';
@@ -13,6 +11,7 @@
     $dbname = "Project_DB";
     $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
 
+    /*
     function answers(){
         echo 
         "<img src='../Images/postbox.png' style='width:15%' class='mt-5'><span id='empty-message' class='text-muted'>You haven't answered any questions yet.</span><button id='activitybtn'class='btn btn-primary mt-5' onclick='gotoHome()' style='border-radius: 20px;'>Answer questions</button>"
@@ -41,11 +40,13 @@
                 ;
             }
         } 
-
+    
         mysqli_close($conn);
         
     }
+    */
 
+    
     $dbhost = 'localhost';
     $dbUsername = 'root';
     $dbpassword = '';
@@ -231,7 +232,8 @@
 
             </div>
         </main>
-
+        
+        <!--
         <div id="cred-container" class="qcardcontainer bg-dark">
             <div class="overlay d-flex justify-content-center align-items-center">
                 
@@ -258,65 +260,14 @@
                 </div>
             </div>
         </div>
+                                -->                            
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<!--         <script src="../JS/profile.js">
-        </script> -->
-        <script>
-
-            function changeTabs(elem) {
-                
-                var tabs = document.getElementsByClassName("single-tab");
-            
-                for(var j=0; j<tabs.length; j++){
-                tabs[j].classList.add("text-muted");
-                tabs[j].style.fontWeight = "normal";
-                }
-                elem.classList.remove("text-muted");
-                elem.style.fontWeight = "bold";
-                document.getElementById("tabtitle").innerHTML = elem.innerHTML;
-                if(elem.innerHTML == "Questions"){
-                    document.getElementById("empty-message").innerHTML = "You haven't asked any questions yet.";
-                    document.getElementById("activitybtn").onclick = showques;
-                    document.getElementById("activitybtn").innerHTML = "Ask questions";
-                    var result ="<?php question(); ?>";
-                    document.getElementById("tabcontent").innerHTML = result;
-                }
-                else if(elem.innerHTML == "Answers"){
-                    document.getElementById("empty-message").innerHTML = "You haven't answered any questions yet.";
-                    document.getElementById("activitybtn").onclick = gotoHome;
-                    document.getElementById("activitybtn").innerHTML = "Answer questions";
-                    var result ="<?php answers(); ?>";
-                    document.getElementById("tabcontent").innerHTML = result;
-                }
-                
-            }
-            
-            function changeavt(){
-                document.getElementById("profilepicfield").click();
-            }
-            function gotoHome(){
-                window.location.href = "answer.php";
-            }
-            function gotoAnswers(){
-                window.location.href = "index.php";
-            }
-            
-            document.getElementById("profilepicfield").onchange = function() {
-                console.log("h1");
-                document.getElementById("changeprofile").click();
-                console.log("h1");
-            };
-
-            function cred(){
-                
-            }
-
-        </script>
-
+        <script src="../JS/profile.js">
+        </script> 
 
     </body>
 </html>

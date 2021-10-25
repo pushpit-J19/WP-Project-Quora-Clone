@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['Cid']) || $_SESSION['Cid']==false){
+        header('location: login.php');
+    }
+
     $dbhost = 'localhost';
     $dbUsername = 'root';
     $dbpassword = '';
@@ -16,12 +21,14 @@
     $new_img_name = "";
 
 
-    if (isset($_POST['q_name'])){
-    $target_dir = "../Images/userdata/";
-    $target_file = $target_dir. basename($_FILES["q_name"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo(basename($target_file), PATHINFO_EXTENSION));
-    }else{
+    if (isset($_FILES['q_name']['name'])){
+      echo"Hello";
+      $target_dir = "../Images/userdata/";
+      $target_file = $target_dir. basename($_FILES["q_name"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo(basename($target_file), PATHINFO_EXTENSION));
+    }
+    else{
         $target_file = "";
     }
 
@@ -43,6 +50,8 @@
             } 
         $cat_vals = implode(',',$new_qcat); 
          
+        echo $target_file;    
+
         $cid = $_SESSION["Cid"]; 
         $sql = 'INSERT INTO QUESTION (Cid, Ques_desc, Asked_date, Q_name, Q_cat) VALUES("'.$cid.'", "'.$new_question.'", "'.date('Y-m-d').'","'.$target_file.'", "'.$cat_vals.'")';    
         if(mysqli_query($conn, $sql))
@@ -67,7 +76,7 @@
         }         
 
 
-        if (isset($_POST['q_name'])){
+        if (isset($_FILES['q_name']['name'])){
         $target_file = $target_dir.$new_img_name.".".$imageFileType;
         // for images
         if (isset($_POST['q_name'])) {
@@ -95,11 +104,11 @@
 
         if(mysqli_query($conn, $updateQuery)){ 
             echo "<br>Records were updated successfully."; 
-            header("location:index.php");
+           header("location:index.php");
         } 
         else { 
             echo "<br>ERROR: Could not able to execute $updateQuery. " . mysqli_error($conn); 
-            header("location:index.php");
+           header("location:index.php");
         } 
 
 
