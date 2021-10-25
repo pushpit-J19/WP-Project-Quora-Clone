@@ -8,7 +8,7 @@ $dbpassword = '';
 $dbname = "Project_DB";
 
 $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
-$cid = 1; //$_SESSION['cid'];
+$cid = $_SESSION['Cid'];
 $custQuery = "SELECT * FROM CUSTOMER WHERE Cid = '$cid'";
 
                                 

@@ -37,7 +37,7 @@ if(isset($_POST["log-submit"]))
             else if($checkpass === true)
             {
                 session_start();
-                $_SESSION["cid"] = $row["Cid"];
+                $_SESSION["Cid"] = $row["Cid"];
                 header("location:index.php");
                 echo "Hogaya Bhai";
             }
@@ -56,7 +56,7 @@ if(isset($_POST["log-submit"]))
         else if($checkpass === true)
         {
             session_start();
-            $_SESSION["cid"] = $row["Cid"];
+            $_SESSION["Cid"] = $row["Cid"];
             header("location:../index.php");
             exit();
         }

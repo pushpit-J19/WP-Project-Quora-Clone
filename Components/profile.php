@@ -23,7 +23,7 @@
 
         
 
-        $cid = 1; //  $_SESSION['cid'];
+        $cid = $_SESSION['Cid'];
         $quesQuery = "SELECT * FROM QUESTION WHERE Cid = $cid";
         if($questions = mysqli_query($conn, $questionsQuery)){
             if(mysqli_num_rows($questions) > 0){
@@ -52,7 +52,7 @@
     $dbname = "Project_DB";
 
     $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
-    $cid = 1; //$_SESSION['cid'];
+    $cid = $_SESSION['Cid'];
     $custQuery = "SELECT * FROM CUSTOMER WHERE Cid = '$cid'";
 
                                     

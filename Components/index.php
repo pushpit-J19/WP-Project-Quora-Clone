@@ -1,6 +1,7 @@
 <?php
-    /*
+
     session_start();
+    /*
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']==false){
         header('location: login.php');
     }
@@ -12,7 +13,7 @@
     $dbname = "Project_DB";
 
     $conn = mysqli_connect($dbhost,$dbUsername,$dbpassword, $dbname);
-    $cid = 1; //$_SESSION['cid'];
+    $cid = $_SESSION['Cid'];
     $custQuery = "SELECT * FROM CUSTOMER WHERE Cid = '$cid'";
 
                                     

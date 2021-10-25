@@ -43,7 +43,7 @@
             } 
         $cat_vals = implode(',',$new_qcat); 
          
-        $cid = 1; //$_SESSION["cid"] 
+        $cid = $_SESSION["Cid"]; 
         $sql = 'INSERT INTO QUESTION (Cid, Ques_desc, Asked_date, Q_name, Q_cat) VALUES("'.$cid.'", "'.$new_question.'", "'.date('Y-m-d').'","'.$target_file.'", "'.$cat_vals.'")';    
         if(mysqli_query($conn, $sql))
         {

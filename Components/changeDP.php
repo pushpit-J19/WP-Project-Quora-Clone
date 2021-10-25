@@ -24,7 +24,7 @@ if ($uploadOk == 0) {
   echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-    $cid = 1; // $_SESSION['cid'];
+    $cid = $_SESSION['Cid']; // $_SESSION['cid'];
     $localfilename = $target_dir.$cid.".".$imageFileType;
   if (move_uploaded_file($_FILES["profilepicfield"]["tmp_name"], $localfilename)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["profilepicfield"]["name"])). " has been uploaded.";
