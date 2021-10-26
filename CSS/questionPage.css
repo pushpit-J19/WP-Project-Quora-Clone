@@ -1,8 +1,0 @@
-#answerfield{
-    border : 1px lightgray solid;
-    resize: none;
-}
-
-#answerfield:focus{
-    outline: none;
-}
